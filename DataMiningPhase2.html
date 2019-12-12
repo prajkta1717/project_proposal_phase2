@@ -1,0 +1,72 @@
+<h1 style="color: #5e9ca0;">Classification of videos on youtube</h1>
+<p>Classification of dataset is a superwised approach and it uses given data to classify new observation.There are many algorithms
+ to implement the classifier like "SVM", "KNN", "Naive Bayes Classifier", "Decision Trees", etc.</p>
+<h2 style="color: #2e6c80;">Naive Bayes Classifier:</h2>
+<p>It is a classification technique based on Bayes’ Theorem which assumes that all features of classes are independent of each other and they individually contribute
+ to the probability of the class.</p>
+<h3 style="color: #2e6c80;">Advantages of Naive Bayes Classifier:</h3>
+<li> Naive Bayes model is easy to build and particularly useful for very large data sets.</li>
+<li>Along with simplicity, Naive Bayes is known to outperform even highly sophisticated classification methods.</li>
+<li>It performs well in case of discrete response variable compared to the continuous variable.</li>
+<li>It can be used with multiple class prediction problems.</li>
+<li>It also performs well in the case of text analytics problems.</li>
+<li>When the assumption of independence holds, a Naive Bayes classifier performs better compared to other models like logistic regression.</li>
+<h3 style="color: #2e6c80;">Naive Bayes Calculation:</h3>
+<p>It uses bayes theorem:
+P(L | features)=P(features | L)P(L)P(features)</p>
+<h2 style="color: #2e6c80;">Steps for Naive Bayes Classification:</h2>
+<li>Step 1: Calculate the prior probability for given class labels</li>
+<p>
+def calculateProbability(x, mean, stdev):</br>
+exponent = math.exp(-(math.pow(x-mean,2)/(2*math.pow(stdev,2))))</br>
+return (1/(math.sqrt(2*math.pi)*stdev))*exponent</br>
+</p>
+<li>Step 2: Find Likelihood probability for each class</li>
+<p>
+def calculateClassProbabilities(summaries, inputVector):</br>
+probabilities = {}</br>
+for classValue, classSummaries in summaries.items():</br>
+probabilities[classValue] = 1</br>
+for i in range(len(classSummaries)):</br>
+mean, stdev = classSummaries[i]</br>
+x = inputVector[i]</br>
+probabilities[classValue] *= calculateProbability(x, mean, stdev)</br>
+return probabilities</br>
+</p>
+<li>Step 3: Calculate the probability of each word for each class</li>
+<li>Step 3: Put these value in Bayes Formula and calculate posterior probability.</li>
+P(c|d)=P(c).∏k=1ndP(tk|c)
+<li>Step 4: See which class has a higher probability, given the input belongs to the higher probability class.</li>
+
+<h2 style="color: #2e6c80;">Contributions:</h2>
+	<li style="color: #2e6c80;">Removed stop words for an efficient result</li>
+	<li style="color: #2e6c80;">Applied stemmer of NLTK for a better search result</li>
+	<li style="color: #2e6c80;">Tried Smoothing to avoid a zero probability problem</li>
+<h2 style="color: #2e6c80;">Remove stop words:</h2>
+<p>It is known that certain terms(Stop words), such as "the", "is", "of", and "that", may appear a lot of 
+times but have little importance. Thus we need to weigh down the frequent terms while scale up the rare ones.
+Remove the stop words while Naive Bayes classification.</p>
+<h4>from stop_words import get_stop_words</br>
+stop_words = get_stop_words('english')
+</h4>
+<h2 style="color: #2e6c80;">Apply Stemming(Porter Stemmer):</h2>
+<p>Stemming is the process of converting the words of a sentence to its non-changing portions. 
+In the example of amusing, amusement, and amused above, the stem would be amus.</p>
+<h4>Code:
+porter = nltk.PorterStemmer()
+stem = [porter.stem(i) for i in tokens]</h4>
+<h2 style="color: #2e6c80;">Applied smoothing:</h2>
+<p>Data smoothing is a statistical technique that involves removing outliers from a data set in order to make a pattern more visible.
+The probability of words which are not there in the dataset will be zero. Since the probability of one word is zero, whole result will be zero.
+To avoid this issue use smoothing which will increase the word count by one.
+</p>
+<h2 style="color: #2e6c80;">Challenges faced :</h2>
+<li>Naive Bayes classification and smoothing understanding and its implementation was little comlicated. 
+For that I red one text book and two-three articles and understood the exact concept of Naive Bayes classifier. </li>
+<li>I have image URLs in my Dataset, No images were in data set then I wrote a code to fetch the image using URL and store it in the system to display it.</li>
+<h2 style="color: #2e6c80;">References:</h2>
+<li>https://towardsdatascience.com/multinomial-naive-bayes-classifier-for-text-analysis-python-8dd6825ece67</li>
+<li>https://www.quora.com/What-is-difference-between-stemming-and-lemmatization</li>
+<li>https://www.datacamp.com/community/tutorials/naive-bayes-scikit-learn</li>
+<li>https://jakevdp.github.io/PythonDataScienceHandbook/05.05-naive-bayes.html</li>
+
