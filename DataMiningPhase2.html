@@ -49,17 +49,9 @@ Remove the stop words while Naive Bayes classification.</p>
 <h4>from stop_words import get_stop_words</br>
 stop_words = get_stop_words('english')
 </h4>
-<h2 style="color: #2e6c80;">Apply Stemming(Porter Stemmer):</h2>
-<p>Stemming is the process of converting the words of a sentence to its non-changing portions. 
-In the example of amusing, amusement, and amused above, the stem would be amus.</p>
-<h4>Code:
-porter = nltk.PorterStemmer()
-stem = [porter.stem(i) for i in tokens]</h4>
-<h2 style="color: #2e6c80;">Applied smoothing:</h2>
-<p>Data smoothing is a statistical technique that involves removing outliers from a data set in order to make a pattern more visible.
-The probability of words which are not there in the dataset will be zero. Since the probability of one word is zero, whole result will be zero.
-To avoid this issue use smoothing which will increase the word count by one.
-</p>
+<h2 style="color: #2e6c80;">Source Code :</h2>
+<a href="https://github.com/prajkta1717/video-classifier"></a>
+
 <h2 style="color: #2e6c80;">Challenges faced :</h2>
 <li>Naive Bayes classification and smoothing understanding and its implementation was little comlicated. 
 For that I red one text book and two-three articles and understood the exact concept of Naive Bayes classifier. </li>
